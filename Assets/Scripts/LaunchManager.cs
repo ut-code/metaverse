@@ -17,14 +17,35 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         print("Started Program");
     }
 
+    public void CreateAndJoinRoom(){
+
+        print("trying to create room...");
+
+        string randomRoomName = "Room" + Random.Range(0,10000);
+
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.IsOpen = true;
+        roomOptions.IsVisible = true;
+        roomOptions.MaxPlayers = 20;
+
+
+        PhotonNetwork.CreateRoom(randomRoomName, roomOptions);  
+        print("Joined to" + randomRoomName+"room!");
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         
     }
 
+    public void SayHello(){
+        print("Hello");
+    }
     public void ConnectToPhotonServer(){
 
+        print("Trying to connect to server...");
         if(!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
@@ -53,20 +74,11 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         Debug.Log(newPlayer.NickName + " joined to" + PhotonNetwork.CurrentRoom.Name + " " + PhotonNetwork.CurrentRoom.PlayerCount);
     }
 
-
-    void CreateAndJoinRoom(){
-
-        string randomRoomName = "Room" + Random.Range(0,10000);
-
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-        roomOptions.MaxPlayers = 20;
-
-
-        PhotonNetwork.CreateRoom(randomRoomName, roomOptions);  
-
+    public override void OnJoinedRoom()
+    {
+        Debug.Log(PhotonNetwork.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name);
     }
-    
+
+   
 }
 

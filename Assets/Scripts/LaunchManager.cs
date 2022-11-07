@@ -11,15 +11,74 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+
+    public GameObject EnterGamePanel;
+    public GameObject ConnectionStatusPanel;
+    public GameObject LobbyPanel;
+
     // Start is called before the first frame update
     void Start()
     {
-        print("Started Program");
+        EnterGamePanel.SetActive(true);
+        ConnectionStatusPanel.SetActive(false);
+        LobbyPanel.SetActive(false);
     }
 
-    public void CreateAndJoinRoom(){
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
-        print("trying to create room...");
+    public void ConnectToPhotonServer(){
+
+        if(!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            ConnectionStatusPanel.SetActive(true);
+            EnterGamePanel.SetActive(false);
+        }   
+        
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log(PhotonNetwork.NickName + " Connected to Server.");
+        LobbyPanel.SetActive(true);
+        ConnectionStatusPanel.SetActive(false);
+    }
+
+    public override void OnConnected()
+    {
+        Debug.Log("Connected to Internet");
+    }
+
+    public void JoinRandomRoom(){
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        base.OnJoinRandomFailed(returnCode, message);
+        Debug.Log(message);
+        CreateAndJoinRoom();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log(PhotonNetwork.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name);
+        PhotonNetwork.LoadLevel("GameScene");
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log(newPlayer.NickName + " joined to" + PhotonNetwork.CurrentRoom.Name + " " + PhotonNetwork.CurrentRoom.PlayerCount);
+    }
+
+
+
+    
+    public void CreateAndJoinRoom(){
 
         string randomRoomName = "Room" + Random.Range(0,10000);
 
@@ -30,55 +89,7 @@ public class LaunchManager : MonoBehaviourPunCallbacks
 
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);  
-        print("Joined to" + randomRoomName+"room!");
+
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SayHello(){
-        print("Hello");
-    }
-    public void ConnectToPhotonServer(){
-
-        print("Trying to connect to server...");
-        if(!PhotonNetwork.IsConnected)
-        {
-            PhotonNetwork.ConnectUsingSettings();
-            print("Connected to Photon Server");
-        }   
-        
-    }
-
-    public override void OnConnectedToMaster()
-    {
-        Debug.Log(PhotonNetwork.NickName + " Connected to Server.");
-    }
-
-
-    public override void OnConnected()
-    {
-        Debug.Log("Connected to Internet");
-    }
-
-    public void JoinRandomRoom(){
-        PhotonNetwork.JoinRandomRoom();
-    }
-    
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log(newPlayer.NickName + " joined to" + PhotonNetwork.CurrentRoom.Name + " " + PhotonNetwork.CurrentRoom.PlayerCount);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log(PhotonNetwork.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name);
-    }
-
-   
 }
-

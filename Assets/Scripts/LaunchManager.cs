@@ -17,6 +17,9 @@ public class LaunchManager : MonoBehaviourPunCallbacks
     public GameObject ConnectionStatusPanel;
     public GameObject LobbyPanel;
 
+    //交流所参加用のパネル
+    public GameObject ContactRoomPanel;
+
     //createRoomの部屋の名前
     public TMP_InputField createRoomNameInput;
 
@@ -29,6 +32,7 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         EnterGamePanel.SetActive(true);
         ConnectionStatusPanel.SetActive(false);
         LobbyPanel.SetActive(false);
+        ContactRoomPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,7 +55,8 @@ public class LaunchManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log(PhotonNetwork.NickName + " Connected to Server.");
-        LobbyPanel.SetActive(true);
+        // LobbyPanel.SetActive(true);
+        ContactRoomPanel.SetActive(true);
         ConnectionStatusPanel.SetActive(false);
     }
 
@@ -86,9 +91,10 @@ public class LaunchManager : MonoBehaviourPunCallbacks
 
 
     
+    //交流所に参加
     public void CreateAndJoinRoom(){
 
-        string randomRoomName = "Room" + Random.Range(0,10000);
+        string roomName = "contact";
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = true;
@@ -96,7 +102,7 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = 20;
 
 
-        PhotonNetwork.CreateRoom(randomRoomName, roomOptions);  
+        PhotonNetwork.CreateRoom(roomName, roomOptions);  
 
     }
 
@@ -114,5 +120,6 @@ public class LaunchManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinRoom(roomName);
     }
+
 
 }

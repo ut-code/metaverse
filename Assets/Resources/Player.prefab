@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 7821417998590950484}
   - component: {fileID: -5961268942961339687}
   - component: {fileID: 3166705076227694470}
+  - component: {fileID: 4095289390666997066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -323,6 +324,19 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4095289390666997066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877155554332136540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd749eb4002d27e42aa3418a76fbba74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 8176462837158943120, guid: f8a8b6378aa314b42a7bd167660d24d4, type: 3}
 --- !u!1 &5877155554541635786
 GameObject:
   m_ObjectHideFlags: 0

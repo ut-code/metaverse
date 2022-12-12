@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ObjectPlacer : MonoBehaviour
+public class ObjectPlacer : MonoBehaviourPunCallbacks 
 {   
 
-    public GameObject ballPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class ObjectPlacer : MonoBehaviour
         Vector3 litteHigh = new Vector3(0,1,0);
 
         if(Input.GetKeyDown("space")) {
-            Instantiate(ballPrefab, transform.position + litteHigh, Quaternion.identity);
+            PhotonNetwork.Instantiate("sphere", transform.position + litteHigh, Quaternion.identity);
         }
     }
 }

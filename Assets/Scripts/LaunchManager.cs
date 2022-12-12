@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class LaunchManager : MonoBehaviourPunCallbacks
 {   
@@ -15,6 +16,12 @@ public class LaunchManager : MonoBehaviourPunCallbacks
     public GameObject EnterGamePanel;
     public GameObject ConnectionStatusPanel;
     public GameObject LobbyPanel;
+
+    //createRoomの部屋の名前
+    public TMP_InputField createRoomNameInput;
+
+    //joinRoomの部屋の名前
+    public TMP_InputField joinRoomNameInput;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +71,7 @@ public class LaunchManager : MonoBehaviourPunCallbacks
         CreateAndJoinRoom();
     }
 
+    
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name);
@@ -90,6 +98,21 @@ public class LaunchManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);  
 
+    }
+
+    public void CreateRoom() {
+
+        string roomName = createRoomNameInput.text;
+
+
+        PhotonNetwork.CreateRoom(roomName);
+    }
+
+    public void JoinRoom() {
+
+        string roomName = joinRoomNameInput.text;
+
+        PhotonNetwork.JoinRoom(roomName);
     }
 
 }

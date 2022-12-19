@@ -10,10 +10,6 @@ on:
   workflow_dispatch: {}
 
 jobs:
-name: Run the WebGL build
-on:
-  workflow_dispatch: {}
-jobs:
   build:
     name: Run the WebGL build
     runs-on: ubuntu-latest

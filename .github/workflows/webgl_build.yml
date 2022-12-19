@@ -1,5 +1,4 @@
 name: Build and deploy
-
 on:
   # masterへのPRマージをトリガーとしてワークフローを開始する
   pull_request:

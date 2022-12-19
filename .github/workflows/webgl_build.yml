@@ -1,5 +1,4 @@
 name: Build and deploy
-
 on:
   # masterへのPRマージをトリガーとしてワークフローを開始する
   pull_request:
@@ -10,10 +9,6 @@ on:
   # 手動実行デバッグ用
   workflow_dispatch: {}
 
-jobs:
-name: Run the WebGL build
-on:
-  workflow_dispatch: {}
 jobs:
   build:
     name: Run the WebGL build

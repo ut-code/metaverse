@@ -11,7 +11,7 @@ on:
   workflow_dispatch: {}
   
 env:
-  target : Dev_Build
+  target : Build
 
 jobs:
   build:

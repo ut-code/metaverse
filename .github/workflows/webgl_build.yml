@@ -4,14 +4,14 @@ on:
   # masterへのPRマージをトリガーとしてワークフローを開始する
   pull_request:
     branches:
-      - master
+      - main
     types: [closed]
 
   # 手動実行デバッグ用
   workflow_dispatch: {}
   
 env:
-  target : Dev_Build
+  target : Build
 
 jobs:
   build:

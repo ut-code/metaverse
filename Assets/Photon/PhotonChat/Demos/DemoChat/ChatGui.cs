@@ -9,6 +9,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using Photon.Chat;
 using Photon.Realtime;
@@ -78,6 +79,9 @@ namespace Photon.Chat.Demo
         public GameObject Title;
         public Text StateText; // set in inspector
         public Text UserIdText; // set in inspector
+
+        // *************************
+        public TextMeshProUGUI SidePanel;
 
         // private static string WelcomeText = "Welcome to chat. Type \\help to list commands.";
         private static string HelpText = "\n    -- HELP --\n" +
@@ -338,6 +342,8 @@ namespace Photon.Chat.Demo
                 else
                 {
                     this.chatClient.PublishMessage(this.selectedChannelName, inputLine);
+                    Debug.Log("done!!!");
+                    ShowSideChannel();
                 }
             }
         }
@@ -635,6 +641,14 @@ namespace Photon.Chat.Demo
             {
                 pair.Value.isOn = pair.Key == channelName ? true : false;
             }
+        }
+
+        // *****************************************************
+        public void ShowSideChannel()
+        {
+            ChatChannel channel = null;
+            bool found = this.chatClient.TryGetChannel("Guild", out channel);
+            SidePanel.text = channel.ToStringMessages();
         }
 
         public void OpenDashboard()

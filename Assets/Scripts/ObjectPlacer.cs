@@ -5,21 +5,27 @@ using Photon.Pun;
 
 public class ObjectPlacer : MonoBehaviourPunCallbacks 
 {   
-
+    public new Camera camera;
+    private float distance = 20.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {   
-        Vector3 litteHigh = new Vector3(0,1,0);
 
-        if(Input.GetKeyDown("space")) {
-            PhotonNetwork.Instantiate("sphere", transform.position + litteHigh, Quaternion.identity);
+        if(Input.GetMouseButtonUp(0))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit, distance))
+            {
+                PhotonNetwork.Instantiate("sphere", hit.point, Quaternion.identity);
+            }
         }
     }
 }

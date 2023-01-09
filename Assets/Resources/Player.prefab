@@ -338,6 +338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 61005458}
   clone: {fileID: 8176462837158943120, guid: 28b4a1681dcd93644bcbf0bcb2f4bf7f, type: 3}
+  jumpPower: 5
+  rb: {fileID: 3080623177550988141}
 --- !u!1 &5877155554541635786
 GameObject:
   m_ObjectHideFlags: 0

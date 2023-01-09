@@ -79,9 +79,10 @@ public class ObjectPlacer : MonoBehaviourPunCallbacks
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
+    {   
+
         if(collision.gameObject.CompareTag("Floor"))
-        {
+        {   
             isJumping = false;
         }
     }

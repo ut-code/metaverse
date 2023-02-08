@@ -9,14 +9,13 @@ public class ObjectPlacer : MonoBehaviourPunCallbacks
     public new Camera camera;
     public GameObject clone;
 
-    public float jumpPower;
-    public Rigidbody rb;
+    
 
     private float distance = 20.0f;
     private GameObject previewClone;
 
     private bool isCreative = false;
-    private bool isJumping = false;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +28,6 @@ public class ObjectPlacer : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {   
-            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-            {
-                rb.velocity = Vector3.up * jumpPower;
-                isJumping = true;
-            }
 
             if (Input.GetKeyUp(KeyCode.C))
             {
@@ -78,12 +72,4 @@ public class ObjectPlacer : MonoBehaviourPunCallbacks
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {   
-
-        if(collision.gameObject.CompareTag("Floor"))
-        {   
-            isJumping = false;
-        }
-    }
 }

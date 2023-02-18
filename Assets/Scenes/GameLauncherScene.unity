@@ -2510,7 +2510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2015670883}
         m_TargetAssemblyTypeName: LaunchManager, Assembly-CSharp
-        m_MethodName: CreateAndJoinRoom
+        m_MethodName: JoinRandomRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

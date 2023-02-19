@@ -343,7 +343,7 @@ namespace Photon.Chat.Demo
                 {
                     this.chatClient.PublishMessage(this.selectedChannelName, inputLine);
                     Debug.Log("done!!!");
-                    ShowSideChannel();
+                    
                 }
             }
         }
@@ -426,6 +426,7 @@ namespace Photon.Chat.Demo
             foreach (string channel in channels)
             {
                 this.chatClient.PublishMessage(channel, "says 'hi'."); // you don't HAVE to send a msg on join but you could.
+                
 
                 if (this.ChannelToggleToInstantiate != null)
                 {
@@ -635,6 +636,7 @@ namespace Photon.Chat.Demo
 
             this.selectedChannelName = channelName;
             this.CurrentChannelText.text = channel.ToStringMessages();
+            ShowSideChannel();
             Debug.Log("ShowChannel: " + this.selectedChannelName);
 
             foreach (KeyValuePair<string, Toggle> pair in this.channelToggles)
@@ -643,13 +645,14 @@ namespace Photon.Chat.Demo
             }
         }
 
-        // *****************************************************
+        // **********************************************************
         public void ShowSideChannel()
         {
             ChatChannel channel = null;
             bool found = this.chatClient.TryGetChannel("Guild", out channel);
             SidePanel.text = channel.ToStringMessages();
         }
+        // **********************************************************
 
         public void OpenDashboard()
         {

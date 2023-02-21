@@ -83,7 +83,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61005455}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &5026609430645722773
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +200,6 @@ GameObject:
   - component: {fileID: 7821417998590950484}
   - component: {fileID: -5961268942961339687}
   - component: {fileID: 3166705076227694470}
-  - component: {fileID: -5711213184796414716}
   - component: {fileID: 4095289390666997066}
   - component: {fileID: -7118825407410889630}
   m_Layer: 0
@@ -218,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5877155554332136540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5430641, y: 0, z: 20.610123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,7 +325,7 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &-5711213184796414716
+--- !u!114 &4095289390666997066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

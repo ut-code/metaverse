@@ -3,23 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ObjectPlacer : MonoBehaviourPunCallbacks 
-{   
+public class ObjectPlacer : MonoBehaviourPunCallbacks
+{
+    //アタッチするゲームオブジェクト
+    public new Camera camera;
+    public GameObject clone;
 
+    
+
+    private float distance = 20.0f;
+    private GameObject previewClone;
+
+    private bool isCreative = false;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        Vector3 litteHigh = new Vector3(0,1,0);
+    {
+        if (photonView.IsMine)
+        {   
 
-        if(Input.GetKeyDown("space")) {
-            PhotonNetwork.Instantiate("sphere", transform.position + litteHigh, Quaternion.identity);
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                if (isCreative)
+                {
+                    Destroy(previewClone);
+                    isCreative = false;
+                }
+                else
+                {
+                    previewClone = Instantiate(clone);
+
+                    isCreative = true;
+
+                }
+            }
+
+            if (isCreative)
+            {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, distance))
+                {
+
+                    Vector3 movement = Vector3.Scale(previewClone.transform.localScale, hit.normal) / 2;
+                    previewClone.transform.position = new Vector3(hit.point.x + movement.x, hit.point.y + movement.y, hit.point.z + movement.z);
+
+                    if (Input.GetMouseButtonUp(0))
+                    {
+
+                        PhotonNetwork.Instantiate("sphere", previewClone.transform.position, Quaternion.identity);
+
+                    }
+
+                }
+            }
         }
+
+
+
+
     }
+
 }
